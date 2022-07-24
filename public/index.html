@@ -7,8 +7,17 @@
 <title>First Page</title>
 </head>
 <body>
-    <!--put here-->
-    <h1>Hello, Hoola</h1>
-    <!---->
+
+    <form name="Submit" action="/data" method="post">
+        student_id :<input type="text" name="student_id" ></p>   
+        firstname :<input type="text" name="firstname" />
+        lastname :<input type="text" name="lastname" ></p>
+        gender :<input type="radio" name="gender"  value="Male" >Male
+                <input type="radio" name="gender"  value="Female">Female
+                <input type="radio" name="gender" value="other"> Other </p>
+    
+        <input type="submit" value="Submit">
+    </form>
+
 </body>
 </html>
