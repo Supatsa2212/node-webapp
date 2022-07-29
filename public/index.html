@@ -4,20 +4,55 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>First Page</title>
+<title>Submit</title>
+
+<!--CSS-->
+<link rel="stylesheet" href="/jquery-ui/themes/base/jquery-ui.css">
+
+<!--Javascript-->
+<script src="/jquery/jquery.min.js"></script>
+<script src="/jquery-ui/jquery-ui.min.js"></script>
+
 </head>
 <body>
-
-    <form name="Submit" action="/data" method="post">
-        student_id :<input type="text" name="student_id" ></p>   
-        firstname :<input type="text" name="firstname" />
-        lastname :<input type="text" name="lastname" ></p>
-        gender :<input type="radio" name="gender"  value="Male" >Male
-                <input type="radio" name="gender"  value="Female">Female
-                <input type="radio" name="gender" value="other"> Other </p>
-    
-        <input type="submit" value="Submit">
+    <form id="my-form">
+        <input type="text" id="txtStudentID" name="txtStudentID" placeholder="รหัสนิสิต" />
+        <br/>
+        <input type="text" id="txtName" name="txtName" placeholder="ชื่อ-นามสกุล" />
+        <br/>
+        <input type="text" id="txtEmail" name="txtEmail" placeholder="Email" />
+        <br/>
+        <input type="password" id="txtPassword" name="txtPassword" placeholder="รหัสผ่าน" />
+        <br/>
+        <input type="button" id="btnSubmit" value="Submit"/>
     </form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+      //btnSubmit
+      $('#btnSubmit').click( function(){
+        //console.log("Submit");
+        $.ajax({
+          method: "POST",
+          url: "https://tools.ecpe.nu.ac.th/network/api/register",
+          dataType : 'json',
+          headers: { 
+            'Content-Type': 'application/json',
+            "Accepts": "application/json",
+            "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90b29scy5lY3BlLm51LmFjLnRoXC9uZXR3b3JrXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjU4ODQ2NjMwLCJleHAiOjE2NTg4NTAyMzAsIm5iZiI6MTY1ODg0NjYzMCwianRpIjoiSFJYc05nS3J6aGdoU0RHMyIsInN1YiI6MjksInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.KKjim93Cy3Jn3Clu9sLHvSNsGaTdbGdHXwzvGd2pZSo ",
+            
+          },
+          data:JSON.stringify( { "name": $('#txtName').val(), "student_id": $('#txtStudentID').val(), "email": $('#txtEmail').val(), "password": $('#txtPassword').val() } ),
+          success: function(data){
+            console.log(data);
+            
+          }
+        });
+
+      });    
+    });
+</script>
 
 </body>
 </html>
